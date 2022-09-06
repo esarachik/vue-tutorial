@@ -8,9 +8,14 @@
     <title>Document</title>
 </head>
 
+<!-- https://www.youtube.com/watch?v=je1r0Qaz0Gs&list=PLYAyQauAPx8l7G8lTbSv23UTAwbVORY1r -->
+
 <body>
     <div id="app">
-        hola {{nombre}}
+        Contador: {{contador}}
+        <button type="cutton" v-on:click="stopInterval">{{btnMEssage}}
+
+        </button>
     </div>
     <script src="https://unpkg.com/vue@next"></script>
     <script>
@@ -18,7 +23,26 @@
         const holaMundo = {
             data() {
                 return {
-                    nombre: 'jairo'
+                    contador: 0,
+                    interval: null,
+                    isRunning: false,
+                    btnMEssage: 'Detener'
+                }
+            },
+            mounted() {
+                this.interval = setInterval(() => this.contador++, 100)
+                this.isRunning = true;
+            },
+            methods: {
+                stopInterval() {
+                    if (this.isRunning) {
+                        clearInterval(this.interval)
+                        this.btnMEssage = 'Continuar'
+                    } else {
+                        this.interval = setInterval(() => this.contador++, 100)
+                        this.btnMEssage = 'Detener'
+                    }
+                    this.isRunning = !this.isRunning
                 }
             }
         }
