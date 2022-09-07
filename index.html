@@ -12,37 +12,27 @@
 
 <body>
     <div id="app">
-        Contador: {{contador}}
-        <button type="cutton" v-on:click="stopInterval">{{btnMEssage}}
-
-        </button>
+        <label v-bind:title="titulo" v-bind:data-hola="titulo">Hola mundo</label>
+        <hr>
+        <button v-on:click="showImage('kiss.jpeg')">kiss</button>
+        <button v-on:click="showImage('zeppelin.jpg')">zeppelin</button>
+        <hr>
+        <img v-bind:src="imagen" alt="">
     </div>
+
     <script src="https://unpkg.com/vue@next"></script>
     <script>
         //data,methods, props, mounted, created, computed, watch, destroyed
         const holaMundo = {
             data() {
                 return {
-                    contador: 0,
-                    interval: null,
-                    isRunning: false,
-                    btnMEssage: 'Detener'
+                    titulo:"Este es un titulo dinamico",
+                    imagen: 'kiss.jpeg'
                 }
             },
-            mounted() {
-                this.interval = setInterval(() => this.contador++, 100)
-                this.isRunning = true;
-            },
-            methods: {
-                stopInterval() {
-                    if (this.isRunning) {
-                        clearInterval(this.interval)
-                        this.btnMEssage = 'Continuar'
-                    } else {
-                        this.interval = setInterval(() => this.contador++, 100)
-                        this.btnMEssage = 'Detener'
-                    }
-                    this.isRunning = !this.isRunning
+            methods:{
+                 showImage(imageName) {
+                    this.imagen = imageName
                 }
             }
         }
