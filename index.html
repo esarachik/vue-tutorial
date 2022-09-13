@@ -12,12 +12,21 @@
 
 <body>
     <div id="app">
-        <label v-bind:title="titulo" v-bind:data-hola="titulo">Hola mundo</label>
-        <hr>
-        <button v-on:click="showImage('kiss.jpeg')">kiss</button>
-        <button v-on:click="showImage('zeppelin.jpg')">zeppelin</button>
-        <hr>
-        <img v-bind:src="imagen" alt="">
+       <label for="">Escribe tu nombre</label>
+       <input type="text" v-model="nombre">
+       <hr> 
+       <div>Hola {{nombre}}</div>
+       <hr>
+       <select v-model="fruta" name="" id="">
+        <option value="1">manzana</option>
+        <option value="2">pera</option>
+        <option value="3">uva</option>
+        <option value="4">sandia</option>
+        <option value="5">durazno</option>
+       </select>
+       <div>
+        <label for="">Seleccione</label><input type="checkbox" v-model="activo">
+    </div>
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
@@ -26,14 +35,13 @@
         const holaMundo = {
             data() {
                 return {
-                    titulo:"Este es un titulo dinamico",
-                    imagen: 'kiss.jpeg'
+                    nombre:'',
+                    fruta:'1',
+                    activo:true
                 }
             },
             methods:{
-                 showImage(imageName) {
-                    this.imagen = imageName
-                }
+               
             }
         }
         var mounted = Vue.createApp(holaMundo).mount('#app')
