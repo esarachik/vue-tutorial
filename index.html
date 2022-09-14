@@ -17,12 +17,23 @@
         </ul>
         <hr>
         <ul>
-            <li v-for="fruta in frutas_con_ids" v-bind:key="fruta.id">{{fruta.id}} - {{fruta.nombre}}</li>
+            <li v-for="fruta in frutas_con_ids" v-bind:key="fruta.id">
+                {{fruta.id}} - {{fruta.nombre}}
+                <ul>
+                    <li v-for="pais in fruta.paises_origen" v-bind:key="pais.id"> {{pais.id}} - {{pais.nombre}}</li>
+                </ul>
+            </li>
         </ul>
         <select v-model="frutaId">
             <option v-for="(fruta,index) in frutas_con_ids" v-bind:value="fruta.id"> {{index}} {{fruta.nombre}}</option>
         </select>
         <div>{{frutaId}}</div>
+        <ul>
+            <li v-for="letra in letras" v-bind:key="letra">{{letra}}</li>
+        </ul>
+        <ul>
+            <li v-for="num in 100" v-bind:key="num">{{num}}</li>
+        </ul>
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
@@ -31,12 +42,33 @@
         const holaMundo = {
             data() {
                 return {
-                    frutaId:'',
+                    letras:"abcdef",
+                    frutaId: '',
                     frutas: ['Manzana', 'Pera', 'Uva'],
                     frutas_con_ids: [
-                        { id: 1, nombre: 'Manzana' },
-                        { id: 2, nombre: 'Peraa' },
-                        { id: 3, nombre: 'Uva' },
+                        {
+                            id: 1,
+                            nombre: 'Manzana',
+                            paises_origen:
+                                [
+                                    { id: 1, nombre: 'España' },
+                                    { id: 2, nombre: 'Rusia' }
+                                ]
+                        },
+                        {
+                            id: 2,
+                            nombre: 'Peraa',
+                            paises_origen:
+                                [
+                                    { id: 3, nombre: 'Uruguay' },
+                                    { id: 4, nombre: 'Argentina' }
+                                ]
+                        },
+                        {
+                            id: 3,
+                            nombre: 'Uva',
+                            paises_origen:null
+                        },
                     ]
                 }
             },
