@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     <title>Document</title>
 </head>
 
@@ -12,6 +18,31 @@
 
 <body>
     <div id="app">
+        <div class="container">
+
+            <table class="table striped boarded">
+                <thead>
+                    <th>Nombre</th>
+                    <th>Usuario</th>
+                    <th>Correo</th>
+                    <th>Direccion</th>
+                </thead>
+                <tbody>
+                    <tr v-for="usuario in usuarios" v-bind:id="usuario.id">
+                        <td>{{usuario.name}}</td>
+                        <td>{{usuario.username}}</td>
+                        <td>{{usuario.email}}</td>
+                        <td>
+                            <ul>
+                                <li>Ciudad: {{usuario.address.city}}</li>
+                                <li>Calle: {{usuario.address.street}}</li>
+                                <li>Zip: {{usuario.address.zipcode}}</li>
+                            </ul>                           
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         {{posts}}
     </div>
 
