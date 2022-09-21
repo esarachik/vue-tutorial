@@ -18,22 +18,21 @@
 
 <body>
     <div id="app">
-        <h5 v-if="numero_uno > numero_dos">
-            El numero {{numero_uno}} es mayor que el {{numero_dos}}
-        </h5>
-        <h5 v-else-if="numero_uno == numero_dos">
-            El numero {{numero_uno}} es igual que el {{numero_dos}}
-        </h5>
-        <h5 v-else="numero_uno < numero_dos">
-            El numero {{numero_uno}} es menor que el {{numero_dos}}
-        </h5>
-        <ul>
-            <li v-for="post in posts">
-                <label v-if="post.id % 2 == 0">Es par</label>
-                <label v-else="">Es Impar</label>
-                {{post.id}} - {{post.title}}
-            </li>
-        </ul>
+       <button class="btn indigo darken-3" @click="contador++">Haz Click</button>
+       {{contador}}
+       <hr>
+       <button class="btn indigo darken-3" @mouseout="estado = false" @mouseover="estado = true">Pasa el maouse</button>
+       {{estado}}
+
+       <select v-on:change="cambiarImagen($event)"  class="browser-default">
+            <option value="kiss.jpeg">Kiss</option>
+            <option value="zeppelin.jpg">Zeppelin</option>        
+       </select>
+       <div>
+           <img :src="imagen" alt="">
+           <!-- <img src="kiss.jpeg" alt="" v-show="estado"> -->
+
+        </div>
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
@@ -41,28 +40,19 @@
         //data,methods, props, mounted, created, computed, watch, destroyed
         const holaMundo = {
             data(){
-                return{
-                    numero_uno: 2,
-                    numero_dos: 6,
-                    posts_pares:[],
-                    posts:[]
-                }
+                return {
+
+                    contador:0,
+                    estado:false,
+                    imagen:'kiss.jpeg'
+                }                
             },
             methods: {
-                getPosts() {
-                    fetch('https://jsonplaceholder.typicode.com/posts')
-                        .then(response => response.json())
-                        .then(data =>
-                        {
-                            this.posts = data
-                            this.posts_pares = data.filter(x => x.id % 2 == 0)
-                        } )
-                }
-            },
-            mounted(){
-                this.getPosts();
-            }
-            
+               cambiarImagen(event)
+               {
+                    this.imagen = event.target.value;
+               }
+            }                       
         }
         var mounted = Vue.createApp(holaMundo).mount('#app')
     </script>
