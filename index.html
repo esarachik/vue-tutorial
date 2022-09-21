@@ -18,21 +18,10 @@
 
 <body>
     <div id="app">
-       <button class="btn indigo darken-3" @click="contador++">Haz Click</button>
-       {{contador}}
-       <hr>
-       <button class="btn indigo darken-3" @mouseout="estado = false" @mouseover="estado = true">Pasa el maouse</button>
-       {{estado}}
+        <img src="kiss.jpeg" alt="" v-show="!ocultar">
+           <img src="kiss.jpeg" alt="" v-if="!ocultar">
 
-       <select v-on:change="cambiarImagen($event)"  class="browser-default">
-            <option value="kiss.jpeg">Kiss</option>
-            <option value="zeppelin.jpg">Zeppelin</option>        
-       </select>
-       <div>
-           <img :src="imagen" alt="">
-           <!-- <img src="kiss.jpeg" alt="" v-show="estado"> -->
-
-        </div>
+       
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
@@ -42,17 +31,10 @@
             data(){
                 return {
 
-                    contador:0,
-                    estado:false,
-                    imagen:'kiss.jpeg'
+                    ocultar:true,
+                    
                 }                
-            },
-            methods: {
-               cambiarImagen(event)
-               {
-                    this.imagen = event.target.value;
-               }
-            }                       
+            }                     
         }
         var mounted = Vue.createApp(holaMundo).mount('#app')
     </script>
