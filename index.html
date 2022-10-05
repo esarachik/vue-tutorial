@@ -18,25 +18,43 @@
 
 <body>
     <div id="app">
-        <img src="kiss.jpeg" alt="" v-show="!ocultar">
-           <img src="kiss.jpeg" alt="" v-if="!ocultar">
+        <form method="post">
+            <div>                
+                <input v-model="checked" type="checkbox" :checked="chkChecked" />
+            </div>
+            <div>
+                <!-- -model will ignore the initial value, checked or selected attributes. found on any form elements -->
+                <select v-model="idFruta" class="browser-default">
+                    <option v-for="(fruta) in frutas" v-bind:value="fruta.id" :selected="fruta.id == 1">                        
+                        {{fruta.id}} - {{fruta.name}} 
+                    </option>
+                </select>
+            </div>
+            <span></span>
 
-       
+        </form>
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
     <script>
-        //data,methods, props, mounted, created, computed, watch, destroyed
-        const holaMundo = {
+        
+        const app = {
             data(){
                 return {
+                    checked:true,
+                    chkChecked:false,    
+        	        frutas:[
+                        {id:0, name:'manzana' , selected:false},
+                        {id:1, name:'pera' , selected:false},
+                        {id:2, name:'melon' , selected:true},
+                        {id:3, name:'durazno' , selected:false}
+                    ]    
 
-                    ocultar:true,
                     
                 }                
             }                     
         }
-        var mounted = Vue.createApp(holaMundo).mount('#app')
+        var mounted = Vue.createApp(app).mount('#app')
     </script>
 </body>
 
