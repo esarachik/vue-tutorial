@@ -32,13 +32,11 @@
 <body>
     <div id="app">
     <div class="container" style="padding-top:50px">
-        <div class="square teal" v-bind:class="{rounded,colorRed}"></div>
-        <!-- o -->
-        <div class="square teal" v-bind:class="{myObj}"></div>
-        <!-- o -->
-        <!-- <div v-bind:class="[rounded ? square : teal]"></div> -->
-        <!-- No anduvo -->
-        <button @click="rounded = !rounded">cmabiar</button>
+        <!-- 'font-size' kebeb
+        'fontSize' camel -->
+        <div v-bind:style="{'font-size' : '26px'}">Hola Mundo</div>      
+        <div v-bind:style="style">Hola Mundo</div>   
+        <div v-bind:style="[style,style2]">Hola Mundo</div>   
     </div>
     </div>
 
@@ -48,12 +46,12 @@
         const app = {
             data(){
                 return {
-                    rounded: false,
-                    colorRed: true,
-                    myObj:{
-                        rounded: false,
-                        colorRed: false
-                    }
+                    style: {
+                        'font-size' : '26px'
+                    },   
+                    style2: {
+                        'background-color' : 'red'
+                    },                   
                 }                
             }                     
         }
