@@ -12,27 +12,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <title>Document</title>
+    <style>
+        .rounded{
+            border-radius: 50px;
+        }
+        .square{
+            height: 50px;
+            width: 50px;
+        }
+        .colorRed{
+            background-color: red !important;
+        }
+
+    </style>
 </head>
 
 <!-- https://www.youtube.com/watch?v=je1r0Qaz0Gs&list=PLYAyQauAPx8l7G8lTbSv23UTAwbVORY1r -->
 
 <body>
     <div id="app">
-        <form method="post">
-            <div>                
-                <input v-model="checked" type="checkbox" :checked="chkChecked" />
-            </div>
-            <div>
-                <!-- -model will ignore the initial value, checked or selected attributes. found on any form elements -->
-                <select v-model="idFruta" class="browser-default">
-                    <option v-for="(fruta) in frutas" v-bind:value="fruta.id" :selected="fruta.id == 1">                        
-                        {{fruta.id}} - {{fruta.name}} 
-                    </option>
-                </select>
-            </div>
-            <span></span>
-
-        </form>
+    <div class="container" style="padding-top:50px">
+        <div class="square teal" v-bind:class="{rounded,colorRed}"></div>
+        <!-- o -->
+        <div class="square teal" v-bind:class="{myObj}"></div>
+        <!-- o -->
+        <!-- <div v-bind:class="[rounded ? square : teal]"></div> -->
+        <!-- No anduvo -->
+        <button @click="rounded = !rounded">cmabiar</button>
+    </div>
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
@@ -41,16 +48,12 @@
         const app = {
             data(){
                 return {
-                    checked:true,
-                    chkChecked:false,    
-        	        frutas:[
-                        {id:0, name:'manzana' , selected:false},
-                        {id:1, name:'pera' , selected:false},
-                        {id:2, name:'melon' , selected:true},
-                        {id:3, name:'durazno' , selected:false}
-                    ]    
-
-                    
+                    rounded: false,
+                    colorRed: true,
+                    myObj:{
+                        rounded: false,
+                        colorRed: false
+                    }
                 }                
             }                     
         }
