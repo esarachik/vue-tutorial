@@ -32,18 +32,7 @@
 <body>
     <div id="app">
         <div class="container" style="padding-top:50px">
-            <input type="text" v-model="n1">
-            <input type="text" v-model="n2">
-            <h5>La suma es {{resultado}}</h5>
-            <hr>
-            <label>Escriba una fruta</label>
-            <input type="text" v-model="fruta"/>
-            <button @click="agregarFruta">Agregar</button>
-            <label>Ha agregado un total de {{totalFrutas}} frutas </label>
-            <br>
-            <ul>
-                <li v-for="fruta in frutas">{{fruta}}</li>
-            </ul>
+           <h5 id="contenedor">{{nombre}}</h5>
         </div>
     </div>
 
@@ -52,26 +41,42 @@
         
         const app = {
             data(){
-                return {
-                     n1:0,
-                     n2:0,   
-                     frutas:[]                                             
+                return {   
+                    nombre:'Elias',
+                    usuarios:[],
+                    posts:[]
+
                 }                
+            },   
+            beforeCreate() {
+                console.log(document.querySelector('#contenedor'))
+                console.log('Antes de ser creado. Nombre contiene '+this.nombre)
+            },  
+            created() {
+                //acceso a datos
+                console.log(document.querySelector('#contenedor'))
+                console.log('Ha sido creado. Nombre contiene '+this.nombre)
+                fetch('https://jsonplaceholder.typicode.com/posts')
+                .then(response => response.json())
+                .then(json => this.posts = json)
+            },  
+            beforeMount() {
+                console.log(document.querySelector('#contenedor'))
+                console.log('Antes de ser montado. Nombre contiene '+this.nombre)
+            },  
+            mounted() {
+                //acceso a datos
+                console.log(document.querySelector('#contenedor'))
+                console.log('Ha sido montado. Nombre contiene '+this.nombre)
             },
-            computed:{
-                resultado: function(){
-                    return parseFloat(this.n1) + parseFloat(this.n2)
-                },
-                totalFrutas: function(){
-                    return this.frutas.length
-                }
-            },
-            methods:{
-                agregarFruta(){
-                    this.frutas.push(this.fruta)
-                    this.fruta = ''
-                }
-            }                  
+            beforeUpdate() {
+                console.log(document.querySelector('#contenedor').innerHTML)
+                console.log('Valor Actual '+this.nombre)
+            },   
+            updated() {
+                console.log(document.querySelector('#contenedor').innerHTML)
+                console.log('Valor nuevo '+this.nombre)
+            },      
         }
         var mounted = Vue.createApp(app).mount('#app')
     </script>
