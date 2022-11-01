@@ -9,13 +9,20 @@ _app.component('menu.component', {
                 </ul>
                 </div>
             </nav>
-            <input type="text" v-model="localUsuario"`,
+            <input type="text" v-model="localUsuario">
+            <hr>
+            <button type="button" @click="saludarDesdeHijo('dentro')">Click here</button>`,
     props:{
         usuario: String
     },
     data() {
         return {
             localUsuario: this.usuario
+        }
+    },
+    methods: {
+        saludarDesdeHijo(nombre){
+            console.log('Hola mundo '+nombre)
         }
     },
 })
