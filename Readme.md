@@ -1,0 +1,5 @@
+-npm install -g vue/cli
+-vue --version
+-vue create hello-world
+-cd hello-world
+-npm run serve
